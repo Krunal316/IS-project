@@ -7,8 +7,9 @@
         body {
             font-family: 'Helvetica', 'Arial', 'sans-serif';
             color: black;
+			background-color: black;
             font-size: 16px;
-            background-color: #f2f2f2;
+
         }
 
         a, a:link, a:visited, a:active {
@@ -24,7 +25,8 @@
         .container {
             width: 80%;
             margin: 0 auto;
-            background-color: white;
+            /* background-color: white; */
+			border: 1px solid white;
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -36,7 +38,7 @@
             padding: 20px;
             text-align: center;
             margin: 20px 0;
-            background-color: #fff;
+            background-color: #b1b1b1;
             border-radius: 5px;
         }
 
@@ -45,7 +47,7 @@
         }
 
         button {
-            background-color: #007bff;
+            background-color: #76a1cf;
             color: #fff;
             padding: 10px 20px;
             border: none;
@@ -54,7 +56,7 @@
         }
 
         button:hover {
-            background-color: #0056b3;
+            background-color: #6292c5;
         }
 
         .divTable {
@@ -89,8 +91,8 @@
     <div class="divTable">
         <div class="divTableRow">
             <div class="divTableCell" style="float: left;">
-                <h1>File Encryption / Decryption</h1>
-                <h4>Use this web browser to encrypt and decrypt files.</h4>
+                <h1 style="color: whitesmoke;">File Encryption / Decryption</h1>
+                <h4 style="color: whitesmoke;">Use this web browser to encrypt and decrypt files.</h4>
             </div>
             <div class="divTableCell" style="float: right;">
                 <h1>
@@ -103,25 +105,32 @@
     </div>
 </div>
 
-<div class="container">
-    <hr>
-</div>
 
-<div class="container" id="divEncryptfile">
-    <h2>Encrypt a File</h2>
-    <p>To encrypt a file, drop the file to be encrypted into the dropzone below. The file will then be encrypted, and you'll be given an opportunity to save the encrypted file to your system.</p>
+
+<div class="container" id="divEncryptfile" style="margin-top: 10rem;">
+    <h2 style="color: whitesmoke;">Encrypt a File</h2>
+    <p style="color: whitesmoke;">To encrypt a file, drop the file to be encrypted into the dropzone below. The file will then be encrypted, and you'll be given an opportunity to save the encrypted file to your system.</p>
 
     <div>
         <div class="dropzone" id="encdropzone" ondrop="drop_handler(event);" ondragover="dragover_handler(event);" ondragend="dragend_handler(event);">
             <p>Drag and drop the file to be encrypted into this dropzone, or click <a onclick="javascript:encfileElem.click();">here</a> to select a file.</p>
             <p><span id="spnencfilename"></span></p>
         </div>
-        <input type="file" id="encfileElem" style="display:none" onchange="selectfile(this.files)">
+        <input type="file" id="encfileElem" style="display:none" onchange="selectfile(this.files)" >
     </div>
 
-    <p></p>
+	<div class="divTable">
+        <div class="divTableBody">
+            <div class="divTableRow">
+                <!-- <div class="divTableCell">Password</div> -->
+                <div class="divTableCell"><span style="color: whitesmoke;">Password</span> <Br><input id="txtEncpassphrase" value="12345" type="password" size="30" style="color:whitesmoke;background-color: black; border: 2px solid grey; border-radius:3px; margin-top: 5px;" placeholder="Enter Your Password" onkeyup="javascript:encvalidate();" value=""></div>
+                <div class="divTableCell"><br><span style="color: whitesmoke;">(minimum length eight characters, make sure it's strong!)</span></div>
+            </div>
 
-    <div class="divTable">
+        </div>
+    </div>
+
+    <div class="divTable" style="margin-top: 10px;">
         <div class="divTableBody">
             <div class="divTableRow">
                 <div class="divTableCell"><button id="btnEncrypt" onclick="javascript:encryptfile();">Encrypt File</button></div>
@@ -139,9 +148,9 @@
     <p></p>
 </div>
 
-<div class="container" id="divDecryptfile">
-    <h2>Decrypt a File</h2>
-    <p>Decrypt a file using the password that was previously used to encrypt the file. After the file is decrypted, you'll be given an opportunity to save the decrypted file to your system.</p>
+<div class="container" id="divDecryptfile" style="margin-top: 10rem;">
+    <h2 style="color: whitesmoke;">Decrypt a File</h2>
+    <p style="color: whitesmoke;">Decrypt a file using the password that was previously used to encrypt the file. After the file is decrypted, you'll be given an opportunity to save the decrypted file to your system.</p>
 
     <div>
         <div class="dropzone" id="decdropzone" ondrop="drop_handler(event);" ondragover="dragover_handler(event);" ondragend="dragend_handler(event);">
@@ -152,8 +161,20 @@
     </div>
 
     <p></p>
+    <!-- <label style="color: whitesmoke;">Password</label><br>
+	<input type="text" id="password" required style="background-color: black; border: 2px solid grey; border-radius:3px; margin-top: 5px;" placeholder="Enter Your Password"> -->
+	<div class="divTable">
+        <div class="divTableBody">
+            <div class="divTableRow">
+                <!-- <div class="divTableCell">Password</div> -->
+                <div class="divTableCell"><span style="color: whitesmoke;">Password</span> <Br><input id="txtDecpassphrase" type="password" size="30" style="background-color: black; border: 2px solid grey; border-radius:3px; margin-top: 5px;" placeholder="Enter Your Password" onkeyup="javascript:encvalidate();" value=""></div>
+                <!-- <div class="divTableCell"><br><span style="color: whitesmoke;">(minimum length eight characters, make sure it's strong!)</span></div> -->
+            </div>
 
-    <div class="divTable">
+        </div>
+    </div>
+
+    <div class="divTable" style="margin-top: 10px;">
         <div class="divTableBody">
             <div class="divTableRow">
                 <div class="divTableCell"><button id="btnDecrypt" onclick="javascript:decryptfile();">Decrypt File</button></div>
@@ -189,6 +210,30 @@
 		mode='decrypt';
 	}
 }
+
+function encvalidate() {
+	txtEncpassphrase=document.getElementById('txtEncpassphrase').value;
+		console.log(txtEncpassphrase)
+			if(txtEncpassphrase.length<=8){
+				
+				btnEncrypt=document.getElementById('btnEncrypt');
+
+				btnEncrypt.disabled=true
+				return false;
+			}
+		// if(txtEncpassphrase.value.length>=8 && txtEncpassphrase.value==txtEncpassphraseretype.value) { 
+		//   spnCheckretype.classList.add("greenspan");
+		//   spnCheckretype.classList.remove("redspan");
+		//   spnCheckretype.innerHTML='&#10004;';
+		// } else { 
+		//   spnCheckretype.classList.remove("greenspan");
+		//   spnCheckretype.classList.add("redspan");
+  		//   spnCheckretype.innerHTML='&#10006;';
+		// }
+
+		// if( txtEncpassphrase.value.length>=8 && txtEncpassphrase.value==txtEncpassphraseretype.value && objFile ) { btnEncrypt.disabled=false; } else { btnEncrypt.disabled=true; }
+			return true;
+	}
 
 function drop_handler(ev) {
 	console.log("Drop");
@@ -274,6 +319,7 @@ function calculate( keybytes)
 	return paddedData;	
 }
 async function encryptfile() {
+	if(encvalidate()){
 	var plaintextbytes = await readfile(objFile)
 		.catch(function(err){
 			console.error(err);
@@ -297,7 +343,7 @@ async function encryptfile() {
 
 	if (!cipherbytes) {
 		spnEncstatus.classList.add("redspan");
-		spnEncstatus.innerHTML = '<p>Error encrypting file. See console log.</p>';
+		spnEncstatus.innerHTML = '<p>Error Encrypting File</p>';
 		return;
 	}
 
@@ -309,8 +355,9 @@ async function encryptfile() {
 	aEncsavefile.download = objFile.name ;
 
 	spnEncstatus.classList.add("greenspan");
-	spnEncstatus.innerHTML = '<p>File encrypted.</p>';
+	spnEncstatus.innerHTML = '<p>File Encrypted.</p>';
 	aEncsavefile.hidden = false;
+}
 }
 
 async function decryptfile() {
@@ -350,7 +397,7 @@ async function decryptfile() {
 	aDecsavefile.download = objFile.name ;
 
 	spnDecstatus.classList.add("greenspan");
-	spnDecstatus.innerHTML = '<p>File decrypted.</p>';
+	spnDecstatus.innerHTML = '<p>File Decrypted.</p>';
 	aDecsavefile.hidden = false;
 }
 </script>
