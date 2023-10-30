@@ -215,9 +215,7 @@ function encvalidate() {
 	txtEncpassphrase=document.getElementById('txtEncpassphrase').value;
 		console.log(txtEncpassphrase)
 			if(txtEncpassphrase.length<=8){
-				
 				btnEncrypt=document.getElementById('btnEncrypt');
-
 				btnEncrypt.disabled=true
 				return false;
 			}
